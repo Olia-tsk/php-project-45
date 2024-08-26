@@ -1,0 +1,12 @@
+{
+    "name": "hexlet/code",
+    "description": "Brain games project",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ольга Курбатова",
+            "email": "kon@2i.tusur.ru"
+        }
+    ],
+    "require": {}
+}
