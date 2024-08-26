@@ -8,5 +8,9 @@
             "email": "kon@2i.tusur.ru"
         }
     ],
-    "require": {}
+    "license": "MIT",
+    "require": {},
+    "bin": [
+        "bin/brain-games"
+    ]
 }
