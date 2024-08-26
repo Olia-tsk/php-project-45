@@ -9,7 +9,14 @@
         }
     ],
     "license": "MIT",
-    "require": {},
+    "require": {
+        "wp-cli/php-cli-tools": "^0.12.0"
+    },
+    "autoload": {
+        "files": [
+            "src/Cli.php"
+        ]
+    },
     "bin": [
         "bin/brain-games"
     ]
