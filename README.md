@@ -11,3 +11,5 @@
 Аскинема с примером запуска игры `make brain-calc`, победой и поражением игрока - [asciinema.org](https://asciinema.org/a/mOmCeNZuSIsQKNefipCscJ0i8)
 
 Аскинема с примером запуска игры `make brain-gcd`, победой и поражением игрока - [asciinema.org](https://asciinema.org/a/F32gDTwTsuH5h9fM4ncHvlwJf)
+
+Аскинема с примером запуска игры `make brain-progression`, победой и поражением игрока - [asciinema.org](https://asciinema.org/a/zKo4OGo02RZoR0XI2v6dppGja)
