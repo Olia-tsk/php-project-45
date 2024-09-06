@@ -10,6 +10,11 @@ function printGameCondition(string $gameCondition)
     return line("%s", $gameCondition);
 }
 
+function printQuestion(string $question)
+{
+    line($question);
+}
+
 function getUserAnswer()
 {
     return prompt("Your answer");
