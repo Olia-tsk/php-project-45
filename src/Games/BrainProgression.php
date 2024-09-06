@@ -2,18 +2,21 @@
 
 namespace BrainGames\Games\BrainProgression;
 
+use function BrainGames\Cli\greetUser;
+use function BrainGames\Engine\finishGame;
+use function BrainGames\Engine\getUserAnswer;
+use function BrainGames\Engine\isCorrectAnswer;
+use function BrainGames\Engine\printGameCondition;
 use function cli\line;
-use function cli\prompt;
 
 function brainProgression()
 {
-    line("Welcome to the Brain Games!");
-    $name = prompt("May I have your name?");
-    line("Hello, %s!", $name);
-    line("What number is missing in the progression?");
+    $userName = greetUser();
 
-    $i = 0;
-    while ($i < 3) {
+    printGameCondition("What number is missing in the progression?");
+
+    $counter = 0;
+    while ($counter < 3) {
         $progression = [];
 
         $size = rand(5, 10);
@@ -22,8 +25,8 @@ function brainProgression()
         $hiddenIndex = rand(0, $size - 1);
         $progression[] = $start;
 
-        for ($y = 0; $y < $size - 1; $y++) {
-            $progression[] = $progression[$y] + $step;
+        for ($i = 0; $i < $size - 1; $i++) {
+            $progression[] = $progression[$i] + $step;
         }
 
         $correctAnswer = $progression[$hiddenIndex];
@@ -31,19 +34,15 @@ function brainProgression()
         $progressionString = implode(" ", $progression);
 
         line('Question: %s', $progressionString);
-        $answer = prompt("Your answer");
 
-        if ($answer == $correctAnswer) {
-            line("Correct!");
-            $i++;
+        $userAnswer = getUserAnswer();
+
+        if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
+            $counter++;
         } else {
-            line('"%s" is wrong answer ;( Correct answer was "%s".', $answer, $correctAnswer);
-            line("Let's try again, %s!", $name);
             break;
         }
 
-        if ($i == 3) {
-            line("Congratulations, %s!", $name);
-        }
+        finishGame($userName, $counter);
     }
 }
