@@ -17,8 +17,8 @@ function brainGcd()
 
     $counter = 0;
     while ($counter < 3) {
-        $x = rand(0, 100);
-        $y = rand(0, 100);
+        $x = rand(1, 100);
+        $y = rand(1, 100);
 
         $r = $x % $y;
 
