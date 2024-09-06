@@ -2,18 +2,21 @@
 
 namespace BrainGames\Games\BrainGcd;
 
+use function BrainGames\Cli\greetUser;
+use function BrainGames\Engine\finishGame;
+use function BrainGames\Engine\getUserAnswer;
+use function BrainGames\Engine\isCorrectAnswer;
+use function BrainGames\Engine\printGameCondition;
 use function cli\line;
-use function cli\prompt;
 
 function brainGcd()
 {
-    line("Welcome to the Brain Games!");
-    $name = prompt("May I have your name?");
-    line("Hello, %s!", $name);
-    line("Find the greatest common divisor of given numbers.");
+    $userName = greetUser();
 
-    $i = 0;
-    while ($i < 3) {
+    printGameCondition("Find the greatest common divisor of given numbers.");
+
+    $counter = 0;
+    while ($counter < 3) {
         $x = rand(0, 100);
         $y = rand(0, 100);
 
@@ -29,19 +32,14 @@ function brainGcd()
 
         line('Question: %s %s', $x, $y);
 
-        $answer = prompt("Your answer");
+        $userAnswer = getUserAnswer();
 
-        if ($answer == $correctAnswer) {
-            line("Correct!");
-            $i++;
+        if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
+            $counter++;
         } else {
-            line('"%s" is wrong answer ;( Correct answer was "%s".', $answer, $correctAnswer);
-            line("Let's try again, %s!", $name);
             break;
         }
 
-        if ($i == 3) {
-            line("Congratulations, %s!", $name);
-        }
+        finishGame($userName, $counter);
     }
 }
