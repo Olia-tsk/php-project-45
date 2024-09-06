@@ -22,6 +22,7 @@ function brainCalc()
         $x = rand(0, 50);
         $y = rand(0, 50);
         $operation = $operations[array_rand($operations, 1)];
+        $correctAnswer = 0;
 
         line('Question: %s %s %s', $x, $operation, $y);
 
