@@ -5,7 +5,7 @@ namespace BrainGames\Engine;
 use function cli\line;
 use function cli\prompt;
 
-function printGameCondition($gameCondition)
+function printGameCondition(string $gameCondition)
 {
     return line("%s", $gameCondition);
 }
@@ -15,7 +15,7 @@ function getUserAnswer()
     return prompt("Your answer");
 }
 
-function isCorrectAnswer($correctAnswer, $userAnswer, $userName)
+function isCorrectAnswer(mixed $correctAnswer, mixed $userAnswer, string $userName)
 {
     if ($userAnswer == $correctAnswer) {
         line("Correct!");
@@ -27,7 +27,7 @@ function isCorrectAnswer($correctAnswer, $userAnswer, $userName)
     }
 }
 
-function finishGame($userName, $counter)
+function finishGame(string $userName, int $counter)
 {
     if ($counter == 3) {
         line("Congratulations, %s!", $userName);
