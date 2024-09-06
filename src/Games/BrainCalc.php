@@ -2,21 +2,23 @@
 
 namespace BrainGames\Games\BrainCalc;
 
+use function BrainGames\Cli\greetUser;
+use function BrainGames\Engine\finishGame;
+use function BrainGames\Engine\getUserAnswer;
+use function BrainGames\Engine\isCorrectAnswer;
+use function BrainGames\Engine\printGameCondition;
 use function cli\line;
-use function cli\prompt;
 
 function brainCalc()
 {
+    $userName = greetUser();
+
+    printGameCondition("What is the result of the expression?");
 
     $operations = ['+', '-', '*'];
 
-    line("Welcome to the Brain Games!");
-    $name = prompt("May I have your name?");
-    line("Hello, %s!", $name);
-    line("What is the result of the expression?");
-
-    $i = 0;
-    while ($i < 3) {
+    $counter = 0;
+    while ($counter < 3) {
         $x = rand(0, 50);
         $y = rand(0, 50);
         $operation = $operations[array_rand($operations, 1)];
@@ -34,19 +36,14 @@ function brainCalc()
                 $correctAnswer = $x * $y;
         }
 
-        $answer = prompt("Your answer");
+        $userAnswer = getUserAnswer();
 
-        if ($answer == $correctAnswer) {
-            line("Correct!");
-            $i++;
+        if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
+            $counter++;
         } else {
-            line('"%s" is wrong answer ;( Correct answer was "%s".', $answer, $correctAnswer);
-            line("Let's try again, %s!", $name);
             break;
         }
 
-        if ($i == 3) {
-            line("Congratulations, %s!", $name);
-        }
+        finishGame($userName, $counter);
     }
 }
