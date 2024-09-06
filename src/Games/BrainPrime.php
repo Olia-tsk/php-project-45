@@ -2,28 +2,31 @@
 
 namespace BrainGames\Games\BrainPrime;
 
+use function BrainGames\Cli\greetUser;
+use function BrainGames\Engine\finishGame;
+use function BrainGames\Engine\getUserAnswer;
+use function BrainGames\Engine\isCorrectAnswer;
+use function BrainGames\Engine\printGameCondition;
 use function cli\line;
-use function cli\prompt;
 
 function brainPrime()
 {
-    line("Welcome to the Brain Games!");
-    $name = prompt("May I have your name?");
-    line("Hello, %s!", $name);
-    line("Answer \"yes\" if given number is prime. Otherwise answer \"no\".");
+    $userName = greetUser();
 
-    $i = 0;
-    while ($i < 3) {
+    printGameCondition("Answer \"yes\" if given number is prime. Otherwise answer \"no\".");
+
+    $counter = 0;
+    while ($counter < 3) {
         $number = rand(1, 100);
-        $counter = 0;
+        $divisionCount = 0;
 
-        for ($y = 2; $y <= $number; $y++) {
-            if ($number % $y == 0) {
-                $counter++;
+        for ($i = 2; $i <= $number; $i++) {
+            if ($number % $i == 0) {
+                $divisionCount++;
             }
         }
 
-        if ($counter == 1) {
+        if ($divisionCount == 1) {
             $correctAnswer = "yes";
         } else {
             $correctAnswer = "no";
@@ -31,19 +34,14 @@ function brainPrime()
 
         line('Question: %s', $number);
 
-        $answer = prompt("Your answer");
+        $userAnswer = getUserAnswer();
 
-        if ($answer == $correctAnswer) {
-            line("Correct!");
-            $i++;
+        if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
+            $counter++;
         } else {
-            line('"%s" is wrong answer ;( Correct answer was "%s".', $answer, $correctAnswer);
-            line("Let's try again, %s!", $name);
             break;
         }
 
-        if ($i == 3) {
-            line("Congratulations, %s!", $name);
-        }
+        finishGame($userName, $counter);
     }
 }
