@@ -7,7 +7,7 @@ use function BrainGames\Engine\finishGame;
 use function BrainGames\Engine\getUserAnswer;
 use function BrainGames\Engine\isCorrectAnswer;
 use function BrainGames\Engine\printGameCondition;
-use function cli\line;
+use function BrainGames\Engine\printQuestion;
 
 function brainCalc()
 {
@@ -24,7 +24,8 @@ function brainCalc()
         $operation = $operations[array_rand($operations, 1)];
         $correctAnswer = 0;
 
-        line('Question: %s %s %s', $x, $operation, $y);
+        $question = "Question: $x $operation $y";
+        printQuestion($question);
 
         switch ($operation) {
             case "+":

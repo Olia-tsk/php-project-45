@@ -7,7 +7,7 @@ use function BrainGames\Engine\finishGame;
 use function BrainGames\Engine\getUserAnswer;
 use function BrainGames\Engine\isCorrectAnswer;
 use function BrainGames\Engine\printGameCondition;
-use function cli\line;
+use function BrainGames\Engine\printQuestion;
 
 function brainProgression()
 {
@@ -33,7 +33,8 @@ function brainProgression()
         $progression[$hiddenIndex] = "..";
         $progressionString = implode(" ", $progression);
 
-        line('Question: %s', $progressionString);
+        $question = "Question: $progressionString";
+        printQuestion($question);
 
         $userAnswer = getUserAnswer();
 

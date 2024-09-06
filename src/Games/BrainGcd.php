@@ -7,7 +7,7 @@ use function BrainGames\Engine\finishGame;
 use function BrainGames\Engine\getUserAnswer;
 use function BrainGames\Engine\isCorrectAnswer;
 use function BrainGames\Engine\printGameCondition;
-use function cli\line;
+use function BrainGames\Engine\printQuestion;
 
 function brainGcd()
 {
@@ -30,7 +30,8 @@ function brainGcd()
 
         $correctAnswer = $y;
 
-        line('Question: %s %s', $x, $y);
+        $question = "Question: $x $y";
+        printQuestion($question);
 
         $userAnswer = getUserAnswer();
 

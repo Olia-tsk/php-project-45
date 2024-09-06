@@ -7,7 +7,7 @@ use function BrainGames\Engine\finishGame;
 use function BrainGames\Engine\getUserAnswer;
 use function BrainGames\Engine\isCorrectAnswer;
 use function BrainGames\Engine\printGameCondition;
-use function cli\line;
+use function BrainGames\Engine\printQuestion;
 
 function brainPrime()
 {
@@ -32,7 +32,8 @@ function brainPrime()
             $correctAnswer = "no";
         }
 
-        line('Question: %s', $number);
+        $question = "Question: $number";
+        printQuestion($question);
 
         $userAnswer = getUserAnswer();
 
