@@ -3,6 +3,17 @@
 namespace BrainGames\Engine;
 
 use function cli\line;
+use function cli\prompt;
+
+function printGameCondition($gameCondition)
+{
+    return line("%s", $gameCondition);
+}
+
+function getUserAnswer()
+{
+    return prompt("Your answer");
+}
 
 function isCorrectAnswer($correctAnswer, $userAnswer, $userName)
 {
