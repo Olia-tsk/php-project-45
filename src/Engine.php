@@ -32,6 +32,25 @@ function isCorrectAnswer(mixed $correctAnswer, mixed $userAnswer, string $userNa
     }
 }
 
+function findPrimeNumber($number)
+{
+    $divisionCount = 0;
+
+    for ($i = 2; $i <= $number; $i++) {
+        if ($number % $i == 0) {
+            $divisionCount++;
+        }
+    }
+
+    if ($divisionCount == 1) {
+        $correctAnswer = "yes";
+    } else {
+        $correctAnswer = "no";
+    }
+
+    return $correctAnswer;
+}
+
 function finishGame(string $userName, int $counter)
 {
     if ($counter == 3) {
