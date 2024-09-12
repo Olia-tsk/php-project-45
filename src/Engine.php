@@ -51,6 +51,21 @@ function findPrimeNumber($number)
     return $correctAnswer;
 }
 
+function findGcdNumber($x, $y)
+{
+    $r = $x % $y;
+
+    while ($r > 0) {
+        $temp = $r;
+        $r = $y % $r;
+        $y = $temp;
+    }
+
+    $correctAnswer = $y;
+
+    return $correctAnswer;
+}
+
 function finishGame(string $userName, int $counter)
 {
     if ($counter == 3) {
