@@ -9,7 +9,7 @@ use function BrainGames\Engine\isCorrectAnswer;
 use function BrainGames\Engine\printGameCondition;
 use function BrainGames\Engine\printQuestion;
 
-function brainCalc()
+function playGame()
 {
     $userName = greetUser();
 
