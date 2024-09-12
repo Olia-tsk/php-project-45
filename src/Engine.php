@@ -32,7 +32,7 @@ function isCorrectAnswer(mixed $correctAnswer, mixed $userAnswer, string $userNa
     }
 }
 
-function findPrimeNumber($number)
+function findPrimeNumber(int $number)
 {
     $divisionCount = 0;
 
@@ -51,7 +51,7 @@ function findPrimeNumber($number)
     return $correctAnswer;
 }
 
-function findGcdNumber($x, $y)
+function findGcdNumber(int $x, int $y)
 {
     $r = $x % $y;
 
