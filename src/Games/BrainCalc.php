@@ -2,6 +2,8 @@
 
 namespace BrainGames\Games\BrainCalc;
 
+use Error;
+
 use function BrainGames\Cli\greetUser;
 use function BrainGames\Engine\finishGame;
 use function BrainGames\Engine\getUserAnswer;
@@ -36,6 +38,9 @@ function playGame()
                 break;
             case "*":
                 $correctAnswer = $x * $y;
+                break;
+            default:
+                throw new Error("Неизвестная операция");
         }
 
         $userAnswer = getUserAnswer();
