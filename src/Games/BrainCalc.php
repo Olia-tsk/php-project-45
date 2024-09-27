@@ -4,30 +4,22 @@ namespace BrainGames\Games\BrainCalc;
 
 use Error;
 
-use function BrainGames\Cli\greetUser;
-use function BrainGames\Engine\finishGame;
-use function BrainGames\Engine\getUserAnswer;
-use function BrainGames\Engine\isCorrectAnswer;
-use function BrainGames\Engine\printGameCondition;
-use function BrainGames\Engine\printQuestion;
+use function BrainGames\Engine\processData;
 
 function playGame()
 {
-    $userName = greetUser();
-
-    printGameCondition("What is the result of the expression?");
-
+    $gameCondition = "What is the result of the expression?";
     $operations = ['+', '-', '*'];
-
+    $data = [];
     $counter = 0;
-    while ($counter < 3) {
+
+    while ($counter < NUMBER_OF_ROUNDS) {
         $x = rand(0, 50);
         $y = rand(0, 50);
         $operation = $operations[array_rand($operations, 1)];
-        $correctAnswer = 0;
 
+        $correctAnswer = 0;
         $question = "Question: $x $operation $y";
-        printQuestion($question);
 
         switch ($operation) {
             case "+":
@@ -43,14 +35,13 @@ function playGame()
                 throw new Error("Неизвестная операция");
         }
 
-        $userAnswer = getUserAnswer();
+        $data[$counter] = [
+            "question" => $question,
+            "correctAnswer" => $correctAnswer
+        ];
 
-        if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
-            $counter++;
-        } else {
-            break;
-        }
-
-        finishGame($userName, $counter);
+        $counter++;
     }
+
+    processData($data, $gameCondition);
 }

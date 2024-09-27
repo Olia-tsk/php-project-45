@@ -2,39 +2,30 @@
 
 namespace BrainGames\Games\BrainGcd;
 
-use function BrainGames\Cli\greetUser;
 use function BrainGames\Engine\findGcdNumber;
-use function BrainGames\Engine\finishGame;
-use function BrainGames\Engine\getUserAnswer;
-use function BrainGames\Engine\isCorrectAnswer;
-use function BrainGames\Engine\printGameCondition;
-use function BrainGames\Engine\printQuestion;
+use function BrainGames\Engine\processData;
 
 function playGame()
 {
-    $userName = greetUser();
-
-    printGameCondition("Find the greatest common divisor of given numbers.");
-
+    $gameCondition = "Find the greatest common divisor of given numbers.";
+    $data = [];
     $counter = 0;
 
-    while ($counter < 3) {
+    while ($counter < NUMBER_OF_ROUNDS) {
         $x = rand(1, 100);
         $y = rand(1, 100);
 
         $question = "Question: $x $y";
-        printQuestion($question);
-
-        $userAnswer = getUserAnswer();
 
         $correctAnswer = findGcdNumber($x, $y);
 
-        if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
-            $counter++;
-        } else {
-            break;
-        }
+        $data[$counter] = [
+            "question" => $question,
+            "correctAnswer" => $correctAnswer
+        ];
 
-        finishGame($userName, $counter);
+        $counter++;
     }
+
+    processData($data, $gameCondition);
 }

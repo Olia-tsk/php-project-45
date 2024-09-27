@@ -2,21 +2,15 @@
 
 namespace BrainGames\Games\BrainProgression;
 
-use function BrainGames\Cli\greetUser;
-use function BrainGames\Engine\finishGame;
-use function BrainGames\Engine\getUserAnswer;
-use function BrainGames\Engine\isCorrectAnswer;
-use function BrainGames\Engine\printGameCondition;
-use function BrainGames\Engine\printQuestion;
+use function BrainGames\Engine\processData;
 
 function playGame()
 {
-    $userName = greetUser();
-
-    printGameCondition("What number is missing in the progression?");
-
+    $gameCondition = "What number is missing in the progression?";
+    $data = [];
     $counter = 0;
-    while ($counter < 3) {
+
+    while ($counter < NUMBER_OF_ROUNDS) {
         $progression = [];
 
         $size = rand(5, 10);
@@ -34,16 +28,14 @@ function playGame()
         $progressionString = implode(" ", $progression);
 
         $question = "Question: $progressionString";
-        printQuestion($question);
 
-        $userAnswer = getUserAnswer();
+        $data[$counter] = [
+            "question" => $question,
+            "correctAnswer" => $correctAnswer
+        ];
 
-        if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
-            $counter++;
-        } else {
-            break;
-        }
-
-        finishGame($userName, $counter);
+        $counter++;
     }
+
+    processData($data, $gameCondition);
 }
