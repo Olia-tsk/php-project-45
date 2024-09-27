@@ -2,8 +2,10 @@
 
 namespace BrainGames\Engine;
 
+use function BrainGames\Cli\greetUser;
 use function cli\line;
 use function cli\prompt;
+
 define("NUMBER_OF_ROUNDS", 3);
 
 function printGameCondition(string $gameCondition)
@@ -72,4 +74,28 @@ function finishGame(string $userName, int $counter)
     if ($counter == 3) {
         line("Congratulations, %s!", $userName);
     }
+}
+
+
+function processData($data, $gameCondition)
+{
+    $roundCounter = 0;
+    $userName = greetUser();
+
+    printGameCondition($gameCondition);
+
+    foreach ($data as $gameRound) {
+        printQuestion($gameRound['question']);
+
+        $userAnswer = getUserAnswer();
+        $correctAnswer = $gameRound['correctAnswer'];
+
+        if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
+            $roundCounter++;
+        } else {
+            break;
+        }
+    }
+
+    finishGame($userName, $roundCounter);
 }
