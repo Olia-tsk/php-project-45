@@ -8,21 +8,6 @@ use function cli\prompt;
 
 define("NUMBER_OF_ROUNDS", 3);
 
-function printGameCondition(string $gameCondition)
-{
-    return line("%s", $gameCondition);
-}
-
-function printQuestion(string $question)
-{
-    line($question);
-}
-
-function getUserAnswer()
-{
-    return prompt("Your answer");
-}
-
 function isCorrectAnswer(mixed $correctAnswer, mixed $userAnswer, string $userName)
 {
     if ($userAnswer == $correctAnswer) {
@@ -69,25 +54,17 @@ function findGcdNumber(int $x, int $y)
     return $correctAnswer;
 }
 
-function finishGame(string $userName, int $counter)
-{
-    if ($counter == 3) {
-        line("Congratulations, %s!", $userName);
-    }
-}
-
-
-function processData($data, $gameCondition)
+function processData(array $data, string $gameCondition)
 {
     $roundCounter = 0;
     $userName = greetUser();
 
-    printGameCondition($gameCondition);
+    line("%s", $gameCondition);
 
     foreach ($data as $gameRound) {
-        printQuestion($gameRound['question']);
+        line($gameRound['question']);
 
-        $userAnswer = getUserAnswer();
+        $userAnswer = prompt("Your answer");
         $correctAnswer = $gameRound['correctAnswer'];
 
         if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
@@ -97,5 +74,7 @@ function processData($data, $gameCondition)
         }
     }
 
-    finishGame($userName, $roundCounter);
+    if ($roundCounter == 3) {
+        line("Congratulations, %s!", $userName);
+    }
 }
