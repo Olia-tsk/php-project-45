@@ -4,6 +4,7 @@ namespace BrainGames\Engine;
 
 use function cli\line;
 use function cli\prompt;
+define("NUMBER_OF_ROUNDS", 3);
 
 function printGameCondition(string $gameCondition)
 {
