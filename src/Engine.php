@@ -8,18 +8,6 @@ use function cli\prompt;
 
 define("NUMBER_OF_ROUNDS", 3);
 
-function isCorrectAnswer(mixed $correctAnswer, mixed $userAnswer, string $userName)
-{
-    if ($userAnswer == $correctAnswer) {
-        line("Correct!");
-        return true;
-    } else {
-        line('"%s" is wrong answer ;( Correct answer was "%s".', $userAnswer, $correctAnswer);
-        line("Let's try again, %s!", $userName);
-        return false;
-    }
-}
-
 function findPrimeNumber(int $number)
 {
     $divisionCount = 0;
@@ -66,8 +54,12 @@ function processData(array $data, string $gameCondition)
         $userAnswer = prompt("Your answer");
         $correctAnswer = $gameRound['correctAnswer'];
 
-        if (!isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
+        if ($userAnswer != $correctAnswer) {
+            line('"%s" is wrong answer ;( Correct answer was "%s".', $userAnswer, $correctAnswer);
+            line("Let's try again, %s!", $userName);
             return;
+        } else {
+            line("Correct!");
         }
     }
 
