@@ -2,7 +2,6 @@
 
 namespace BrainGames\Games\BrainGcd;
 
-use function BrainGames\Engine\findGcdNumber;
 use function BrainGames\Engine\processData;
 
 function playGame()
@@ -12,12 +11,12 @@ function playGame()
     $counter = 0;
 
     while ($counter < NUMBER_OF_ROUNDS) {
-        $x = rand(1, 100);
-        $y = rand(1, 100);
+        $firstNumber = rand(1, 100);
+        $secondNumber = rand(1, 100);
 
-        $question = "Question: $x $y";
+        $question = "Question: $firstNumber $secondNumber";
 
-        $correctAnswer = findGcdNumber($x, $y);
+        $correctAnswer = findGcdNumber($firstNumber, $secondNumber);
 
         $data[$counter] = [
             "question" => $question,
@@ -28,4 +27,19 @@ function playGame()
     }
 
     processData($data, $gameCondition);
+}
+
+function findGcdNumber(int $firstNumber, int $secondNumber)
+{
+    $modulo = $firstNumber % $secondNumber;
+
+    while ($modulo > 0) {
+        $temp = $modulo;
+        $modulo = $secondNumber % $modulo;
+        $secondNumber = $temp;
+    }
+
+    $correctAnswer = $secondNumber;
+
+    return $correctAnswer;
 }

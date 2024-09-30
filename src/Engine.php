@@ -8,21 +8,6 @@ use function cli\prompt;
 
 define("NUMBER_OF_ROUNDS", 3);
 
-function findGcdNumber(int $firstNumber, int $secondNumber)
-{
-    $modulo = $firstNumber % $secondNumber;
-
-    while ($modulo > 0) {
-        $temp = $modulo;
-        $modulo = $secondNumber % $modulo;
-        $secondNumber = $temp;
-    }
-
-    $correctAnswer = $secondNumber;
-
-    return $correctAnswer;
-}
-
 function processData(array $data, string $gameCondition)
 {
     $userName = greetUser();
