@@ -15,11 +15,7 @@ function playGame()
 
         $question = "Question: $randNumber";
 
-        if ($randNumber % 2 == 0) {
-            $correctAnswer = 'yes';
-        } else {
-            $correctAnswer = 'no';
-        }
+        ($randNumber % 2 == 0) ? $correctAnswer = "yes" : $correctAnswer = "no";
 
         $data[$counter] = [
             "question" => $question,
