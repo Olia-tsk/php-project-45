@@ -13,13 +13,13 @@ function playGame()
     while ($counter < NUMBER_OF_ROUNDS) {
         $progression = [];
 
-        $size = rand(5, 10);
+        $size = rand(5, 10) - 1;
         $start = rand(0, 100);
         $step = rand(1, 100);
-        $hiddenIndex = rand(0, $size - 1);
+        $hiddenIndex = rand(0, $size);
         $progression[] = $start;
 
-        for ($i = 0; $i < $size - 1; $i++) {
+        for ($i = 0; $i < $size; $i++) {
             $progression[] = $progression[$i] + $step;
         }
 
