@@ -2,7 +2,6 @@
 
 namespace BrainGames\Games\BrainPrime;
 
-use function BrainGames\Engine\findPrimeNumber;
 use function BrainGames\Engine\processData;
 
 function playGame()
@@ -25,4 +24,23 @@ function playGame()
     }
 
     processData($data, $gameCondition);
+}
+
+function findPrimeNumber(int $number)
+{
+    $divisionCount = 0;
+
+    for ($i = 2; $i <= $number; $i++) {
+        if ($number % $i == 0) {
+            $divisionCount++;
+        }
+    }
+
+    if ($divisionCount == 1) {
+        $correctAnswer = "yes";
+    } else {
+        $correctAnswer = "no";
+    }
+
+    return $correctAnswer;
 }
