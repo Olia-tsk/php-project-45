@@ -56,7 +56,6 @@ function findGcdNumber(int $x, int $y)
 
 function processData(array $data, string $gameCondition)
 {
-    $roundCounter = 0;
     $userName = greetUser();
 
     line("%s", $gameCondition);
@@ -67,14 +66,10 @@ function processData(array $data, string $gameCondition)
         $userAnswer = prompt("Your answer");
         $correctAnswer = $gameRound['correctAnswer'];
 
-        if (isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
-            $roundCounter++;
-        } else {
-            break;
+        if (!isCorrectAnswer($correctAnswer, $userAnswer, $userName)) {
+            return;
         }
     }
 
-    if ($roundCounter == 3) {
-        line("Congratulations, %s!", $userName);
-    }
+    line("Congratulations, %s!", $userName);
 }
