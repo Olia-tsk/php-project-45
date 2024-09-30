@@ -27,17 +27,17 @@ function findPrimeNumber(int $number)
     return $correctAnswer;
 }
 
-function findGcdNumber(int $x, int $y)
+function findGcdNumber(int $firstNumber, int $secondNumber)
 {
-    $r = $x % $y;
+    $modulo = $firstNumber % $secondNumber;
 
-    while ($r > 0) {
-        $temp = $r;
-        $r = $y % $r;
-        $y = $temp;
+    while ($modulo > 0) {
+        $temp = $modulo;
+        $modulo = $secondNumber % $modulo;
+        $secondNumber = $temp;
     }
 
-    $correctAnswer = $y;
+    $correctAnswer = $secondNumber;
 
     return $correctAnswer;
 }
