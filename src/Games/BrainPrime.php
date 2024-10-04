@@ -4,9 +4,11 @@ namespace BrainGames\Games\BrainPrime;
 
 use function BrainGames\Engine\processData;
 
+use const BrainGames\Engine\NUMBER_OF_ROUNDS;
+
 function playGame()
 {
-    $gameCondition = "Answer \"yes\" if given number is prime. Otherwise answer \"no\".";
+    $gameCondition = 'Answer "yes" if given number is prime. Otherwise answer "no".';
     $data = [];
     $counter = 0;
 
@@ -28,15 +30,15 @@ function playGame()
 
 function findPrimeNumber(int $number)
 {
-    $divisionCount = 0;
+    $divisorsCount = 0;
 
     for ($i = 2; $i <= $number; $i++) {
         if ($number % $i == 0) {
-            $divisionCount++;
+            $divisorsCount++;
         }
     }
 
-    if ($divisionCount == 1) {
+    if ($divisorsCount == 1) {
         $correctAnswer = "yes";
     } else {
         $correctAnswer = "no";

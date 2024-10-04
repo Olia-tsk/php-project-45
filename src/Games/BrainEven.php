@@ -4,9 +4,11 @@ namespace BrainGames\Games\BrainEven;
 
 use function BrainGames\Engine\processData;
 
+use const BrainGames\Engine\NUMBER_OF_ROUNDS;
+
 function playGame()
 {
-    $gameCondition = "Answer \"yes\" if the number is even, otherwise answer \"no\".";
+    $gameCondition = 'Answer "yes" if the number is even, otherwise answer "no".';
     $data = [];
     $counter = 0;
 
@@ -15,7 +17,7 @@ function playGame()
 
         $question = "Question: $randNumber";
 
-        ($randNumber % 2 == 0) ? $correctAnswer = "yes" : $correctAnswer = "no";
+        $correctAnswer = $randNumber % 2 == 0 ? "yes" : "no";
 
         $data[$counter] = [
             "question" => $question,

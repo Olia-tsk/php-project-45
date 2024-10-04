@@ -4,6 +4,8 @@ namespace BrainGames\Games\BrainProgression;
 
 use function BrainGames\Engine\processData;
 
+use const BrainGames\Engine\NUMBER_OF_ROUNDS;
+
 function playGame()
 {
     $gameCondition = "What number is missing in the progression?";

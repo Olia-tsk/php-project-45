@@ -6,6 +6,8 @@ use Error;
 
 use function BrainGames\Engine\processData;
 
+use const BrainGames\Engine\NUMBER_OF_ROUNDS;
+
 function playGame()
 {
     $gameCondition = "What is the result of the expression?";
